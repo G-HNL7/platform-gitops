@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: openshift-config
 secretGenerator:
-  - name: htpass-secret
+  - name: htpasswd-secret
     files:
       - htpasswd
     type: Opaque
 generatorOptions:
   disableNameSuffixHash: true
 resources:
-  - oauth-patch.yaml
+  - oauth.yaml
