@@ -1,0 +1,14 @@
+apiVersion: project.openshift.io/v1
+kind: Project
+metadata:
+  name: dev
+  labels:
+    app.kubernetes.io/managed-by: kustomize
+
+    hnl7.io/environment: dev
+    hnl7.io/managed-by: gitops
+    hnl7.io/owner: platform
+
+spec:
+  displayName: Development
+  description: HNL7 Development Environment

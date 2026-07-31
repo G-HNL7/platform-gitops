@@ -1,0 +1,14 @@
+apiVersion: project.openshift.io/v1
+kind: Project
+metadata:
+  name: prd
+  labels:
+    app.kubernetes.io/managed-by: kustomize
+
+    hnl7.io/environment: production
+    hnl7.io/managed-by: gitops
+    hnl7.io/owner: platform
+
+spec:
+  displayName: Production
+  description: HNL7 Production Environment

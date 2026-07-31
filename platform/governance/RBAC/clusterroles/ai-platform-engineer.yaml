@@ -1,0 +1,97 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: ai-platform-engineer
+  labels:
+    app.kubernetes.io/managed-by: kustomize
+    hnl7.io/component: rbac
+
+rules:
+
+# Puede solicitar nuevos proyectos
+- apiGroups:
+    - project.openshift.io
+  resources:
+    - projectrequests
+  verbs:
+    - create
+
+# Puede ver namespaces
+- apiGroups:
+    - ""
+  resources:
+    - namespaces
+  verbs:
+    - get
+    - list
+    - watch
+
+# Administración de recursos de aplicaciones
+- apiGroups:
+    - ""
+  resources:
+    - configmaps
+    - secrets
+    - services
+    - serviceaccounts
+    - persistentvolumeclaims
+  verbs:
+    - "*"
+
+- apiGroups:
+    - apps
+  resources:
+    - deployments
+    - replicasets
+    - statefulsets
+    - daemonsets
+  verbs:
+    - "*"
+
+- apiGroups:
+    - batch
+  resources:
+    - jobs
+    - cronjobs
+  verbs:
+    - "*"
+
+- apiGroups:
+    - route.openshift.io
+  resources:
+    - routes
+  verbs:
+    - "*"
+
+- apiGroups:
+    - networking.k8s.io
+  resources:
+    - ingresses
+    - networkpolicies
+  verbs:
+    - "*"
+
+- apiGroups:
+    - autoscaling
+  resources:
+    - horizontalpodautoscalers
+  verbs:
+    - "*"
+
+# Gobierno del namespace
+- apiGroups:
+    - ""
+  resources:
+    - resourcequotas
+    - limitranges
+  verbs:
+    - "*"
+
+# Delegación de permisos
+- apiGroups:
+    - rbac.authorization.k8s.io
+  resources:
+    - roles
+    - rolebindings
+  verbs:
+    - "*"

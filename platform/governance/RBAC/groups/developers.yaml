@@ -1,0 +1,11 @@
+apiVersion: user.openshift.io/v1
+kind: Group
+metadata:
+  name: developers
+  labels:
+    app.kubernetes.io/managed-by: kustomize
+    hnl7.io/component: rbac
+users:
+  - andres
+  - kevin
+  - keiner
