@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: todo-redhat
+
+spec:
+  host: todo.hclareth.space
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+
+    externalCertificate:
+      name: todo-redhat-prd-tls
