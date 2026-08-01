@@ -5,3 +5,6 @@ resources:
   - dev.yaml
   - qa.yaml
   - prd.yaml
+  - router-secret-reader-dev.yaml
+  - router-secret-reader-qa.yaml
+  - router-secret-reader-prd.yaml

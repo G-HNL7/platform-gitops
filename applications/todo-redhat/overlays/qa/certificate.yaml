@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: todo-redhat-qa
+spec:
+  secretName: todo-redhat-qa-tls
+
+  issuerRef:
+    kind: ClusterIssuer
+    name: ca-cluster-issue-letsencrypt
+
+  commonName: todo-qa.hclareth.space
+
+  dnsNames:
+    - todo-qa.hclareth.space
