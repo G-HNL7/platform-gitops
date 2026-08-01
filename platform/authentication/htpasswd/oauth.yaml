@@ -10,3 +10,9 @@ spec:
       htpasswd:
         fileData:
           name: htpasswd-secret
+    - name: ex280-provider
+      mappingMethod: claim
+      type: HTPasswd
+      htpasswd:
+        fileData:
+          name: super-secret
