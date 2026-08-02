@@ -1,0 +1,86 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: corporate-project-template
+  namespace: openshift-config
+
+parameters:
+
+- name: PROJECT_NAME
+
+objects:
+
+- apiVersion: project.openshift.io/v1
+  kind: Project
+  metadata:
+    name: ${PROJECT_NAME}
+
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: default-resource-quota
+    namespace: ${PROJECT_NAME}
+  spec:
+    hard:
+
+      requests.cpu: "4"
+      limits.cpu: "8"
+
+      requests.memory: 8Gi
+      limits.memory: 16Gi
+
+      requests.storage: 100Gi
+
+      pods: "40"
+
+      services: "20"
+
+      secrets: "50"
+
+      configmaps: "50"
+
+      persistentvolumeclaims: "10"
+
+      count/deployments.apps: "20"
+
+      count/statefulsets.apps: "5"
+
+      count/jobs.batch: "20"
+
+      count/cronjobs.batch: "10"
+
+      count/routes.route.openshift.io: "20"
+
+- apiVersion: v1
+  kind: LimitRange
+  metadata:
+    name: default-limits
+  spec:
+    limits:
+
+    - type: Container
+
+      defaultRequest:
+        cpu: 100m
+        memory: 128Mi
+
+      default:
+        cpu: 500m
+        memory: 512Mi
+
+      min:
+        cpu: 50m
+        memory: 64Mi
+
+      max:
+        cpu: "2"
+        memory: 2Gi
+
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    name: default-deny-ingress
+  spec:
+    podSelector: {}
+    policyTypes:
+    - Ingress 
