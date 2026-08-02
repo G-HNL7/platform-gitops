@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: resource-quota-qa
+  namespace: qa
+spec:
+  hard:
+    requests.cpu: "16"
+    limits.cpu: "32"
+
+    requests.memory: 32Gi
+    limits.memory: 64Gi
+
+    pods: "100"
+
+    persistentvolumeclaims: "30"
+
+    requests.storage: 500Gi
